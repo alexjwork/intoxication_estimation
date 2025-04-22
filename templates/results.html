@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-lg">
+    <h1 class="text-3xl font-bold mb-6 text-gray-800">Analysis Results</h1>
+    {% if error %}
+        <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded mb-4">
+            An error occurred during analysis. Please try again with valid files.
+        </div>
+    {% else %}
+        <p class="text-lg mb-4"><strong>Prediction:</strong> {{ result }}</p>
+        <p class="text-sm text-gray-600 mb-4"><strong>Probabilities:</strong></p>
+        <ul class="list-disc pl-5 mb-6">
+            <li>Sober: {{ probabilities[0]|round(4) }}</li>
+            <li>Mildly Intoxicated: {{ probabilities[1]|round(4) }}</li>
+            <li>Highly Intoxicated: {{ probabilities[2]|round(4) }}</li>
+        </ul>
+        <div class="mb-6">
+            <p class="text-sm text-gray-600"><strong>Uploaded Image:</strong></p>
+            <img src="{{ image_url }}" alt="Uploaded Image" class="w-full h-auto rounded-md shadow">
+        </div>
+        <div class="mb-6">
+            <p class="text-sm text-gray-600"><strong>Uploaded Audio:</strong></p>
+            <audio controls src="{{ audio_url }}" class="w-full"></audio>
+        </div>
+    {% endif %}
+    <a href="{{ url_for('index') }}" class="inline-block bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Back to Upload</a>
+</div>
+{% endblock %}
