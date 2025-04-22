@@ -1,0 +1,12 @@
+/* Custom styles for enhanced UI */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+input[type="file"] {
+    transition: border-color 0.2s ease-in-out;
+}
+
+button {
+    transition: background-color 0.2s ease-in-out;
+}
